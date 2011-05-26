@@ -14,6 +14,8 @@ Where is the closest library to where you live or work?  Where is the closest sc
 
 	2400 Chestnut Street, Philadelphia, PA #libraries
 
+A simple hash tagging convention lets users select the type of service or location to search for.  New location can be added quickly and easily to the application by modifying an existing helper class.  
+
 Will it work in my city?
 ========================
 
