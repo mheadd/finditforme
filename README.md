@@ -34,4 +34,4 @@ This app is built with:
 
 The application uses the [SMSified](http://smsified.com) platform to send and receive text messages.
 
-It can be hosted on [Nodester](http://nodester.com/) (an open source Node.js hosting platform) and uses CouchDB for message delivery logging (Cloud services like [IrisCouch](http://www.iriscouch.com/) are a good fit for this, but you can yes any CouchDB instance that you like).
+It can be hosted on [Nodester](http://nodester.com/) (an open source Node.js hosting platform) and uses CouchDB for message delivery logging (cloud services like [IrisCouch](http://www.iriscouch.com/) are a good fit for this, but you can yes any CouchDB instance that you like).
