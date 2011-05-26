@@ -125,8 +125,8 @@ var server = http.createServer(function(req, res) {
         		var request = JSON.parse(data);
         		var message = request.inboundSMSMessageNotification.inboundSMSMessage.message; 
         		var senderNumber = request.inboundSMSMessageNotification.inboundSMSMessage.senderAddress;
-            	var requestType = getRequestType(message);
-            	var address = getAddress(message);
+        		var requestType = getRequestType(message);
+        		var address = getAddress(message);
             	
             	// Create new Cradle object for querying the locations database.
             	var geodb = new (cradle.Connection)(config.couchdb.geohost, config.couchdb.geoport).database(requestType);
