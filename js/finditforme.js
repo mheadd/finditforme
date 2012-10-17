@@ -11,9 +11,15 @@
         service.search(request, placeMarkers);
       }
 
+      function setBanner(num) {
+        var type = document.getElementById('search').value
+        document.getElementById('banner').innerHTML = "Result: " + num + " <strong>" + type.replace(/_/g, " ").toUpperCase() + "</strong> places found.";
+      }
+
       function placeMarkers(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           map.clearAllMarkers();
+          setBanner(results.length);
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
           }
@@ -27,7 +33,6 @@
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
           map: map,
-          animation: google.maps.Animation.DROP,
           position: place.geometry.location
         });
 
@@ -76,6 +81,10 @@
         searchInput.setAttribute('id', 'search');
         searchForm.appendChild(searchInput);
 
+        var defualtOption = document.createElement('option');
+        defualtOption.setAttribute('value', 'Pick a place type');
+        searchInput.appendChild(defualtOption);
+
         for(places in placeTypes) {
           var searchOption = document.createElement('option');
            searchOption.innerHTML = places.replace(/_/g, " ");
@@ -105,9 +114,9 @@
       var openedInfoWindow = null;
       var mapCenter;
       var mapOptions = {
-        zoom: 14,
+        zoom: 16,
         disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        mapTypeId: google.maps.MapTypeId.TERRAIN
       };
 
       google.maps.event.addDomListener(window, 'load', init);

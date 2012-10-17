@@ -23,7 +23,7 @@ var placeTypes = {
 		Car_Wash: 'car_wash',
 		Casino: 'casino',
 		Cemetary: 'cemetery',
-		Chirch: 'church',
+		Church: 'church',
 		City_Hall: 'city_hall',
 		Clothing_Store: 'clothing_store',
 		Convenience_Store: 'convenience_store',
