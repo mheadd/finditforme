@@ -71,13 +71,17 @@
         searchForm.setAttribute('action', '#');
         searchDiv.appendChild(searchForm);
 
+/*
         var searchButton = document.createElement('input');
         searchButton.setAttribute('type', 'button');
+        searchButton.setAttribute('class', 'btn btn-info');
         searchButton.setAttribute('value', 'Find');
         searchButton.setAttribute('onclick', 'doSearch()');
         searchForm.appendChild(searchButton);
+*/
 
         var searchInput = document.createElement('select');
+        searchInput.setAttribute('onchange', 'doSearch()');
         searchInput.setAttribute('id', 'search');
         searchForm.appendChild(searchInput);
 
