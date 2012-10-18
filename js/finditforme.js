@@ -56,6 +56,7 @@
       
       function addInfoWindow(marker, content) {
           var infowindow = new google.maps.InfoWindow({ content: content });
+          infowindow.setOptions({maxWidth:150});
 
           google.maps.event.addListener(marker, 'click', function() {
             if(openedInfoWindow) {
