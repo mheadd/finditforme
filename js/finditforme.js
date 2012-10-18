@@ -68,9 +68,19 @@
 
       function init() {      
 
+        // Place the "You are Here" incon on map load.
+        function setCenterMarker() {
+          var marker = new google.maps.Marker({
+            position: mapCenter,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: 'img/blue-dot.png',
+            title:"You are here!"
+          });
+        }
+
         // Create a div to hold the search form.
         var searchDiv = document.createElement('div');
-        //searchDiv.setAttribute('class', 'search');
         var searchForm = document.createElement('form');
         searchForm.setAttribute('onsubmit', 'doSearch()');
         searchForm.setAttribute('action', '#');
@@ -95,16 +105,19 @@
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
+           navigator.geolocation.getCurrentPosition(function(position) {
            mapCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
            map.setCenter(mapCenter);
+           setCenterMarker()
           });
         }
         else {
          mapCenter = new google.maps.LatLng(39.952335, -75.163789);
          map.setCenter(mapCenter);
+         setCenterMarker()
         }
-        
+
+
         map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(searchDiv);
 
       }
@@ -116,7 +129,8 @@
       var mapOptions = {
         zoom: 16,
         disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+        mapTypeControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
       google.maps.event.addDomListener(window, 'load', init);
