@@ -1,3 +1,4 @@
+// An object with place types accessible through the Google Places API.
 var placeTypes = {
         Libraries: 'library',
         Stores: 'store',

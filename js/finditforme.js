@@ -3,6 +3,7 @@
         return;
       }
 
+      // Search for places through the Google Places API.
       function doSearch() {
         var selection = document.getElementById('searchField').value.replace(/\s/g, "_");
         types = placeTypes[selection];
@@ -15,6 +16,7 @@
         service.search(request, placeMarkers);
       }
 
+      // Place markers on te map.
       function placeMarkers(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           map.clearAllMarkers();
@@ -27,6 +29,7 @@
         }
       }
 
+      // Create a marker.
       function createMarker(place) {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
@@ -44,6 +47,7 @@
         addInfoWindow(marker, windowContent);
       }
 
+      // Clear markers from the map.
       google.maps.Map.prototype.clearAllMarkers = function() {
         if (markersArray) {
           for (var i = 0; i < markersArray.length; i++ ) {
@@ -52,6 +56,7 @@
         }
       }
       
+      // Add an info window with place details to a marker.
       function addInfoWindow(marker, content) {
           var infowindow = new google.maps.InfoWindow({ content: content });
           infowindow.setOptions({ maxWidth: 150 }); 
@@ -78,8 +83,10 @@
           });
         }
 
+        // Create map.
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+        // Get location for map center.
         if(navigator.geolocation) {
            navigator.geolocation.getCurrentPosition(function(position) {
            mapCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
@@ -95,7 +102,7 @@
 
       }
 
-
+      // Map settings.
       var map;
       var markersArray = [];
       var openedInfoWindow = null;
@@ -107,4 +114,5 @@
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
 
+      // Create map on page load.
       google.maps.event.addDomListener(window, 'load', init);
