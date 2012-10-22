@@ -11,16 +11,23 @@
       #map img {
           max-width: none; // Fix for bootstrap related CSS weirdness in GMaps.
         }
-      #search {
-          border: 1px black solid;
-      }
     </style>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <script type="text/javascript" src="js/places.js"></script>
   </head>
-  <body >
-    <div class="navbar navbar-inverse navbar-fixed-top">
+  <body>
+    <div id="top-menu" class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+      <div class="container">
+        <form class="navbar-search form-inline" onsubmit="doNothing()">
+          <input type="text" id="searchField" class="input-large search-query" data-provide="typeahead" data-source='["Libraries", "Stores", "Accounting", "Airport", "Amusement Park", "Aquarium", "Art Gallery", "ATM", "Bakery", "Bank", "Bar", "Beauty Salon", "Bicycle Store", "Book Store", "Bowling Alley", "Bus Station", "Cafe", "Campground", "Car Dealer", "Car Rental", "Car Repair", "Car Wash", "Casino", "Cemetary", "Church", "City Hall", "Clothing Store", "Convenience Store", "Courthouse", "Dentist", "Department Store", "Doctor", "Electrician", "Electronics Store", "Embassy", "Establishment", "Finance", "Fire Station", "Florist", "Food", "Funeral Home", "Furniture Store", "Gas Station", "General Contractor", "Grocery Store", "Supermarket", "Gym", "Hair care", "Hardware store", "Health", "Hindu Temple", "Home Goods Store", "Hospital", "Insurance Agency", "Jewelry Store", "Laundry", "Lawyer", "Library", "Liquor Store", "Local Government Office", "Locksmith", "Lodging", "Meal Delivery", "Meal Takeaway", "Mosque", "Moveie Rental", "Movie Theater", "Moving Company", "Museum", "Night Club", "Painter", "Parl", "Parking", "Pet Store", "Pharmacy", "Physiotherapist", "Place of Worship", "Plumber", "Police", "Post Office", "Real Estate Agency", "Restaurant", "Roofing Contractor", "RV Park", "School", "Shoe Store", "Shopping Mall", "Spa", "Stadium", "Storage", "Store", "Subway station", "Synagogue", "Taxi Stand", "Train Station", "Travel Agency", "University", "Veterinary Care", "Zoo"]' placeholder="Search for places" onchange="doSearch()">
+        </form>
+      </div>
+    </div>
+    <div id = "alert_placeholder"></div>
+    </div>
+    </div>
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
       <div class="navbar-inner">
         <div class="container">
           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -28,24 +35,22 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Phind It For Me</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="https://github.com/mheadd/finditforme">Fork Code</a></li>
+              <li><a href="index.html">Map</a></li>
+              <li><a href="javascript:displayMessage(messages.sms)">SMS</a></li>
+              <li><a href="javascript:displayMessage(messages.about)">About</a></li>
+              <li><a href="https://github.com/mheadd/finditforme">Fork</a></li>
             </ul>
           </div>
         </div>
-        <div class="alert alert-info" id="banner">Choose a location type below.</div>
       </div>
     </div>
     <div class="container" id="map"></div>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/places.js"></script>
+    <script type="text/javascript" src="js/messages.js"></script>
     <script type="text/javascript" src="js/finditforme.js"></script>
   </body>
 </html>

@@ -1,25 +1,23 @@
-      function doSearch() {
-        var types = document.getElementById('search').value.toLowerCase();
-        service = new google.maps.places.PlacesService(map);
-
-        var request = {
-          location: mapCenter,
-          rankBy: google.maps.places.RankBy.DISTANCE,
-          types: [types]
-        };
-
-        service.search(request, placeMarkers);
+      // Catch form submissions
+      function doNothing() {
+        return;
       }
 
-      function setBanner(num) {
-        var type = document.getElementById('search').value
-        document.getElementById('banner').innerHTML = "Result: " + num + " <strong>" + type.replace(/_/g, " ").toUpperCase() + "</strong> places found.";
+      function doSearch() {
+        var selection = document.getElementById('searchField').value.replace(/\s/g, "_");
+        types = placeTypes[selection];
+        service = new google.maps.places.PlacesService(map);
+         var request = {
+           location: mapCenter,
+           rankBy: google.maps.places.RankBy.DISTANCE,
+           types: [types]
+         };
+        service.search(request, placeMarkers);
       }
 
       function placeMarkers(results, status) {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           map.clearAllMarkers();
-          setBanner(results.length);
           for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
           }
@@ -56,7 +54,7 @@
       
       function addInfoWindow(marker, content) {
           var infowindow = new google.maps.InfoWindow({ content: content });
-          infowindow.setOptions({maxWidth:150});
+          infowindow.setOptions({ maxWidth: 150 }); 
 
           google.maps.event.addListener(marker, 'click', function() {
             if(openedInfoWindow) {
@@ -70,7 +68,7 @@
       function init() {      
 
         // Place the "You are Here" incon on map load.
-        function setCenterMarker() {
+        function setCenterMarker(mapCenter) {
           var marker = new google.maps.Marker({
             position: mapCenter,
             map: map,
@@ -80,55 +78,30 @@
           });
         }
 
-        // Create a div to hold the search form.
-        var searchDiv = document.createElement('div');
-        var searchForm = document.createElement('form');
-        searchForm.setAttribute('onsubmit', 'doSearch()');
-        searchForm.setAttribute('action', '#');
-        searchDiv.appendChild(searchForm);
-
-        var searchInput = document.createElement('select');
-        searchInput.setAttribute('onchange', 'doSearch()');
-        searchInput.setAttribute('id', 'search');
-        searchForm.appendChild(searchInput);
-
-        var defualtOption = document.createElement('option');
-        defualtOption.setAttribute('value', 'Pick a place type');
-        searchInput.appendChild(defualtOption);
-
-        for(places in placeTypes) {
-          var searchOption = document.createElement('option');
-           searchOption.innerHTML = places.replace(/_/g, " ");
-           searchOption.setAttribute('value', placeTypes[places]);
-           searchInput.appendChild(searchOption);
-        }
-
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
         if(navigator.geolocation) {
            navigator.geolocation.getCurrentPosition(function(position) {
            mapCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
            map.setCenter(mapCenter);
-           setCenterMarker()
+           setCenterMarker(mapCenter);
           });
         }
         else {
          mapCenter = new google.maps.LatLng(39.952335, -75.163789);
          map.setCenter(mapCenter);
-         setCenterMarker()
+         setCenterMarker(mapCenter);
         }
 
-
-        map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(searchDiv);
-
       }
+
 
       var map;
       var markersArray = [];
       var openedInfoWindow = null;
       var mapCenter;
       var mapOptions = {
-        zoom: 16,
+        zoom: 14,
         disableDefaultUI: true,
         mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
