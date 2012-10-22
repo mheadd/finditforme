@@ -23,7 +23,7 @@
           source: function getPlaceTypes() {
             places = [];
             for (item in placeTypes) {
-              var place = item.replace(/"_"/g, " ");
+              var place = item.replace(/_/g, " ");
               places.push(place)
             }
             console.log(places.length);
