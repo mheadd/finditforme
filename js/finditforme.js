@@ -78,29 +78,32 @@
             position: mapCenter,
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: 'img/blue-dot.png',
+            icon: 'img/green-dot.png',
             title:"You are here!"
           });
         }
 
         // Create map.
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        var bikeRackLayer = new google.maps.KmlLayer('http://gis.phila.gov/ArcGIS/rest/services/Streets/Bike_Racks/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=kmz');
 
         // Get location for map center.
         if(navigator.geolocation) {
            navigator.geolocation.getCurrentPosition(function(position) {
            mapCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+           bikeRackLayer.setMap(map);
            map.setCenter(mapCenter);
            setCenterMarker(mapCenter);
           });
         }
         else {
          mapCenter = new google.maps.LatLng(39.952335, -75.163789);
+         bikeRackLayer.setMap(map);
          map.setCenter(mapCenter);
          setCenterMarker(mapCenter);
-        }
+        } 
 
-      }
+      }    
 
       // Map settings.
       var map;
@@ -108,7 +111,7 @@
       var openedInfoWindow = null;
       var mapCenter;
       var mapOptions = {
-        zoom: 14,
+        zoom: 15,
         disableDefaultUI: true,
         mapTypeControl: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
