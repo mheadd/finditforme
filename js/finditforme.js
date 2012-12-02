@@ -85,23 +85,25 @@
 
         // Create map.
         map = new google.maps.Map(document.getElementById('map'), mapOptions);
-        var bikeRackLayer = new google.maps.KmlLayer('http://gis.phila.gov/ArcGIS/rest/services/Streets/Bike_Racks/MapServer/0/query?text=&geometry=&geometryType=esriGeometryPoint&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&objectIds=&where=1%3D1&time=&returnCountOnly=false&returnIdsOnly=false&returnGeometry=true&maxAllowableOffset=&outSR=&outFields=*&f=kmz');
+
+        // KML for bike racks and bike network
+        //var bikeRacks =  new google.maps.KmlLayer('/kml/bikeracks.kml');
 
         // Get location for map center.
         if(navigator.geolocation) {
            navigator.geolocation.getCurrentPosition(function(position) {
            mapCenter = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-           bikeRackLayer.setMap(map);
            map.setCenter(mapCenter);
            setCenterMarker(mapCenter);
           });
         }
         else {
          mapCenter = new google.maps.LatLng(39.952335, -75.163789);
-         bikeRackLayer.setMap(map);
          map.setCenter(mapCenter);
          setCenterMarker(mapCenter);
         } 
+
+        //bikeRacks.setMap(map);
 
       }    
 
