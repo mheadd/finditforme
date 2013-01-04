@@ -15,8 +15,8 @@ This app is built with:
 
 [Node.js](http://nodejs.org/), specifically the following modules are used:
 
-* [SMSified-node](https://github.com/smsified/smsified-node) - A module for sending and receiving SMS messages (text messages) with the SMSified API.
-* [cradle](https://github.com/cloudhead/cradle) - a high-level, caching, CouchDB client
+* [node-twilio](https://github.com/sjwalter/node-twilio) - A Twilio helper library for node.
 * [geonode](https://github.com/feliperazeek/geonode) - A very basic, but simple, geocode library, currently using Google Geocode API (v3)
+* [google-places](https://github.com/jpowers/node-google-places) - A Google Places lib for node.js.
 
 The application uses the [SMSified](http://smsified.com) platform to send and receive text messages.

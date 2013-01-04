@@ -6,17 +6,11 @@ Config = function() {
 	// Google
 	this.google_api_key = '';
 	
-	// SMSified
-	this.smsified_user = '';
-	this.smsified_password = '';
-	this.smsified_sender_address = '';
-
-	// CouchDB
-	this.couchdb_host = '';
-	this.couchdb_port = '';
-	this.couchdb_user = '';
-	this.couchdb_password = '';
-	this.couchdb_name = '';
+	// Twilio
+	this.twilio_sid = "";
+	this.twilio_token = "";
+	this.twilio_host = "";
+	this.twilio_outgoing = "";
 
 };
 

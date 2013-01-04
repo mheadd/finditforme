@@ -1,5 +1,2 @@
 config/config.js
-.buildpath
-.project
-.settings/*
-
+node_modules/

@@ -1,0 +1,11 @@
+{
+	"name": "finditforme",
+	"version": "0.0.1",
+	"description": "SMS-based locator for places of interest Philly",
+	"main": "finditforme.js",
+	"dependencies": {
+		"google-places": "*",
+		"twilio": "0.4.1",
+		"geo":"*"
+	}
+}
